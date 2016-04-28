@@ -19,6 +19,7 @@ object FlatMap {
     }
 
     wordCount.foreach(println)
+    println
 
   }
 
