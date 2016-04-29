@@ -19,14 +19,16 @@ object PropertiesUtils {
     }else{
       println("PropertiesUtils load:" + path)
       val pro = new java.util.Properties
+      val file = new java.io.File(path)
       try{
-        pro.load(new FileReader(new java.io.File(path)))
+        pro.load(new FileReader(file))
         pro
       }catch {
         case e:java.io.FileNotFoundException => {
           e.printStackTrace()
           pro
         }
+      }finally{
       }
     }
   }
