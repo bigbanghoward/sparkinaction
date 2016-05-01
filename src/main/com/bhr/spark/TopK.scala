@@ -18,11 +18,13 @@ object TopK {
 
     val wordCount = textRdd.flatMap {
       line => line.toString.split("\\s+")
-    }.map(word => (word,1)).reduceByKey{
-      (key,value) => key + value
-    }.collect()
+    }.map(word => (word,1)).reduceByKey(_ + _)
 
-    wordCount.foreach(println)
+    val sorted = wordCount.map{
+      case (key,value) => (value,key)
+    }.sortByKey(true,1)
+
+    sorted.top(2).foreach(println)
 
   }
 
